@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: Center(
       child: ReusableText(
-        style: appStyle(26, AppConstants.green, FontWeight.bold),
+        style: appTextStyle(26, AppConstants.green, FontWeight.bold),
         text: 'Todo app with riverpod',
       ),
     ));

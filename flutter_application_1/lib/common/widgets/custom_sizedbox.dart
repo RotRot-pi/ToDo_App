@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSizedBox extends StatelessWidget {
   const CustomSizedBox({super.key, this.height = 0, this.width = 0});
@@ -7,8 +8,8 @@ class CustomSizedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      width: width.w,
+      height: height.h,
     );
   }
 }

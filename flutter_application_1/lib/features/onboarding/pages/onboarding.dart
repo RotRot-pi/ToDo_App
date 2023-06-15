@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/utils/constants.dart';
 import 'package:flutter_application_1/common/widgets/app_style.dart';
+import 'package:flutter_application_1/common/widgets/custom_outline_bottom.dart';
 import 'package:flutter_application_1/common/widgets/custom_sizedbox.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../common/widgets/reusable_text.dart';
+import '../../auth/pages/login.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -31,7 +33,7 @@ class _OnboardingState extends State<Onboarding> {
           PageView(
             physics: const AlwaysScrollableScrollPhysics(),
             controller: pageController,
-            children: const [PageOne(), PageTwo()],
+            children: const [_PageOne(), _PageTwo()],
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -59,8 +61,8 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                       ReusableText(
                         text: 'Skip',
-                        style:
-                            appStyle(16, AppConstants.light, FontWeight.w500),
+                        style: appTextStyle(
+                            16, AppConstants.light, FontWeight.w500),
                       ),
                     ],
                   ),
@@ -86,8 +88,8 @@ class _OnboardingState extends State<Onboarding> {
   }
 }
 
-class PageOne extends StatelessWidget {
-  const PageOne({super.key});
+class _PageOne extends StatelessWidget {
+  const _PageOne();
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +97,47 @@ class PageOne extends StatelessWidget {
       height: AppConstants.height,
       width: AppConstants.width,
       color: AppConstants.bkDark,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              child: Image.asset('assets/images/todo.png'),
+            ),
+            const CustomSizedBox(
+              height: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ReusableText(
+                  text: 'Todo With Riverpod',
+                  style: appTextStyle(30, AppConstants.light, FontWeight.w600),
+                ),
+                const CustomSizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
+                  child: Text(
+                    'Do you want to make todo list fast and with ease',
+                    textAlign: TextAlign.center,
+                    style: appTextStyle(
+                      16,
+                      AppConstants.light,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ]),
     );
   }
 }
 
-class PageTwo extends StatelessWidget {
-  const PageTwo({super.key});
+class _PageTwo extends StatelessWidget {
+  const _PageTwo();
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +145,29 @@ class PageTwo extends StatelessWidget {
       height: AppConstants.height,
       width: AppConstants.width,
       color: AppConstants.bkDark,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              child: Image.asset('assets/images/todo.png'),
+            ),
+            const CustomSizedBox(
+              height: 50,
+            ),
+            CustomOutlineButton(
+                borderColor: AppConstants.light,
+                height: AppConstants.height * .06,
+                width: AppConstants.width * .9,
+                text: 'Login with phone number',
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+                })
+          ]),
     );
   }
 }
